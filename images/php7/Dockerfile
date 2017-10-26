@@ -11,7 +11,10 @@ RUN apk update \
     && touch /run/nginx/nginx.pid \
     && chmod 777 -R /var/www \
     && rm -fr /var/cache/apk/* \
-    && rm -fr /etc/php7/php.ini
+    && rm -fr /etc/php7/php.ini \
+    && wget https://github.com/imxieke/ext-storage/raw/master/rootfs/usr/lib/php/modules/ioncube_loader_lin_7.1.so -O /usr/lib/php7/modules/ioncube_loader_lin_7.1.so \
+    && wget https://github.com/imxieke/ext-storage/raw/master/rootfs/usr/lib/php/modules/redis.so -O /usr/lib/php7/modules/redis.so \
+    && echo "extension=redis.so" > /etc/php7/conf.d/20_redis.ini
 
 ADD conf.d/nginx.conf /etc/nginx/
 ADD conf.d/default.conf /etc/nginx/conf.d/

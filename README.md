@@ -1,11 +1,17 @@
 ### Xiekers Docker Images Repo!
 
 ```
-alpine 		----> Alpine Linux
-arch 		----> Archlinux 
-archlinux       ----> Archlinux Base Image
-kali          	----> Kali Linux Base Images
-trusty-ssh    	----> Ubuntu Trusty, can connect via ssh
-ubuntu        	----> Ubuntu Xenial
-xos           	----> Xiekers Tools Kit OS
+alpine 		    ---> Alpine Linux edge
+archlinux       ---> Archlinux Base Image
+Buildbot        ---> Archlinux aur Build Bot
+debian        	---> Debian buster
+golang          ---> go language support environment
+h5ai            ---> online file view
+java            ---> java(8) language support environment.
+nextcloud       ---> an open source, self-hosted file share and communication platform, like owncloud.
+owncloud        ---> an open source, self-hosted file sync and share app platform.
+php7            ---> php(7) language support environment  running in alpine include nginx php7!
+rsync           ---> an open source utility that provides fast incremental file transfer. 
+sshd            ---> support remote access via ssh ,running in debian buster
+ttyd            ---> Share your terminal over the web
 ```

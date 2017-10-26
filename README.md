@@ -4,7 +4,7 @@
 alpine          ---> Alpine Linux edge
 archlinux       ---> Archlinux Base Image
 Buildbot        ---> Archlinux aur Build Bot
-debian        	---> Debian buster
+debian        	---> Debian buster, an operating system and a distribution of Free Software
 golang          ---> go language support environment
 h5ai            ---> online file view
 java            ---> java(8) language support environment.

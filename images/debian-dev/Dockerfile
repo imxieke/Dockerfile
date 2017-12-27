@@ -1,10 +1,11 @@
 FROM debian:buster
 LABEL MAINTAINER=Sky \
         MAIL=<Sky@gfw.party>
-
+		
 ENV ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 RUN apt update \
 	&& apt upgrade -y \
+	&& apt install -y gcc git neovim make cmake autoconf automake python python3 python-pip python3-pip \
 	&& apt autoremove -y \
 	&& apt-get clean all \
 	&& rm -fr /var/lib/apt/lists/*

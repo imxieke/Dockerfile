@@ -13,9 +13,6 @@ RUN apk update \
     && chmod 777 -R /var/www \
     && rm -fr /etc/php7/php.ini \
     && chmod +x /bin/build \
-    && echo "#!/bin/sh" > /bin/start \
-    && echo "nginx && /usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.d/www.conf" >> /bin/start \
-    && chmod +x /bin/start \
     && build \
     && apk del gcc g++ make automake autoconf libc-dev \
     && rm -fr /var/cache/apk/*
@@ -25,4 +22,4 @@ ADD conf.d/default.conf /etc/nginx/conf.d/
 ADD conf.d/php.ini /etc/php7/
 ADD conf.d/index.php /var/www
 
-CMD /bin/start
+CMD nginx && /usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.d/www.conf

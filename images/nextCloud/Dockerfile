@@ -1,14 +1,13 @@
 #latest ownCloud in Docker!
-FROM imxieke/php7:latest
+FROM imxieke/php:latest
 LABEL MAINTAINER="Sky" \
         MAIL="Sky@gfw.party"
 ENV NAME nextcloud
-RUN wget https://download.${NAME}.com/server/releases/${NAME}-12.0.3.zip -O /tmp/${NAME}.zip \
+RUN wget https://download.${NAME}.com/server/releases/latest.zip -O /tmp/${NAME}.zip \
         && rm -fr /var/www/* \
         && unzip /tmp/${NAME}.zip -d /tmp/ \
         && mv /tmp/${NAME}/* /var/www/ \
-        && rm -fr /tmp/${NAME}  \
-        && rm -fr /tmp/${NAME}.zip \
+        && rm -fr /tmp/* \
         && chmod 777 -R /var/www/
 
 EXPOSE 80

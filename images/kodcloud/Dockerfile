@@ -6,4 +6,4 @@ RUN echo "==> Download KodCloud " \
   && unzip master.zip && mv KodExplorer-master /var/www/Cloud && rm -fr *.zip*
 
 EXPOSE 80
-CMD nginx && /usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.d/www.conf
+CMD /bin/start

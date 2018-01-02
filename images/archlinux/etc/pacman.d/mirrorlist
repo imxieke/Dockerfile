@@ -1,0 +1,3 @@
+# Non-IPv6 servers commented out
+#Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch

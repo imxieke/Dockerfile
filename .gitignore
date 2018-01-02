@@ -1,0 +1,5 @@
+*.tar
+*.tgz
+*.tar.*
+*.tgz.*
+*.zip

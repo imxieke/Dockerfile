@@ -17,6 +17,11 @@ alpine:
 	@cd ${IMAGES}/alpine \
 	&& docker build --no-cache -t imxieke/alpine:latest .
 
+debian:
+	@cd ${IMAGES}/debian \
+	&& docker build --no-cache -t imxieke/debian:latest .
+
+
 golang:
 	@cd ${IMAGES}/golang \
 	&& docker build --no-cache -t imxieke/golang:latest .

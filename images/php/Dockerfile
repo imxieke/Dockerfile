@@ -1,7 +1,8 @@
-FROM imxieke/alpine:latest
+FROM daocloud.io/xiekers/alpine:latest
 
 LABEL MAINTAINER="Sky" \
         MAIL="Sky@gfw.party"
+
 ADD scripts/build.sh /bin/build
 ADD scripts/start /bin/start
 RUN apk update \

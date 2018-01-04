@@ -7,7 +7,7 @@ RUN echo "==> Download KodCloud " \
   && rm -fr /var/www/* \
   && unzip KodExplorer.zip \
   && mv KodExplorer-master/* /var/www/ \
-  && "==> Set Permision" \
+  && echo "==> Set Permision" \
   && chmod -R 777 /var/www \
   && rm -fr KodExplorer.zip
 

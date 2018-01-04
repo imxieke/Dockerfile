@@ -1,4 +1,4 @@
-FROM imxieke/alpine:latest
+FROM daocloud.io/xiekers/alpine:latest
 LABEL MAINTAINER=Sky \
         MAIL=<Sky@gfw.party>
 

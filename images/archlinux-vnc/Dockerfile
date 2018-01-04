@@ -1,4 +1,4 @@
-FROM imxieke/archlinux:latest
+FROM daocloud.io/xiekers/archlinux:latest
 LABEL MAINTAINER=imxieke \
         MAIL=<imxieke@qq.com>
 

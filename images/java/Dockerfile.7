@@ -4,7 +4,7 @@ LABEL MAINTAINER="Sky" \
         MAIL="Sky@gfw.party"
 
 RUN apk update && \
-    apk add --no-cache openjdk8 && \
+    apk add --no-cache openjdk7 && \
     rm -fr /var/cache/apk/*
 
 CMD [ "/bin/sh" ]

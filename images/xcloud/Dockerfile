@@ -20,6 +20,9 @@ RUN apk update \
   && wget https://release.larsjung.de/h5ai/h5ai-0.29.0.zip \
   && mkdir -p /var/www/h5ai \
   && unzip h5ai-0.29.0.zip -d /var/www/h5ai \
+  && echo "==> Download Webui Aria2" \
+  && wget https://github.com/ziahamza/webui-aria2/archive/master.zip -O webui-aria2.zip \
+  && unzip webui-aria2.zip && rm -fr webui-aria2.zip && mv webui-aria2-master /var/www/webui \
   && echo "==> Download yaaw" \
   && wget https://github.com/binux/yaaw/archive/master.zip \
   && unzip master.zip && rm -fr master.zip && mv yaaw-master /var/www/yaaw \

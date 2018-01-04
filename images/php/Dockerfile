@@ -24,4 +24,4 @@ ADD conf.d/default.conf /etc/nginx/conf.d/
 ADD conf.d/php.ini /etc/php7/
 ADD conf.d/index.php /var/www
 
-CMD nginx && /usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.d/www.conf
+CMD /bin/start

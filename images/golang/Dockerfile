@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM daocloud.io/xiekers/alpine:latest
 
 LABEL MAINTAINER="Sky" \
         MAIL="Sky@gfw.party"

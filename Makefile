@@ -1,10 +1,8 @@
-IMAGES:="images"
+IMAGES:="`pwd`/images"
 # Push to DaoCloud Registry
-PREFIX:="daocloud.io/xiekers"
+PREFIX:="imxieke"
 # PREFIX:="imxieke"
 # Push to Docker Offcial Registry
-phony: 
-	@echo "Phony"
 
 all: # include all command (Function)
 
@@ -79,6 +77,22 @@ nextcloud:
 ttyd:
 	@cd ${IMAGES}/ttyd \
 	&& docker build --no-cache -t ${PREFIX}/ttyd:latest .
+
+ubuntu:
+	@cd ${IMAGES}/ubuntu \
+	&& docker build --no-cache -t ${PREFIX}/ubuntu:latest .
+
+ubuntu-cosmic:
+	@cd ${IMAGES}/ubuntu \
+	&& docker build --no-cache -t ${PREFIX}/ubuntu:cosmic .
+
+ubuntu-bionic:
+	@cd ${IMAGES}/ubuntu \
+	&& docker build --no-cache -t ${PREFIX}/ubuntu:bionic  --file=Dockerfile.bionic .
+
+ubuntu-xenial:
+	@cd ${IMAGES}/ubuntu \
+	&& docker build --no-cache -t ${PREFIX}/ubuntu:xenial --file=Dockerfile.xenial .
 
 clean: 
 	@echo "Hello World"

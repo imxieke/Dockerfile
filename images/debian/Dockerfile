@@ -1,6 +1,6 @@
 FROM debian:buster
-LABEL MAINTAINER=Sky \
-        MAIL=<Sky@gfw.party>
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="oss@live.hk"
 
 ENV ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 RUN apt update \

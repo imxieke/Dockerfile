@@ -1,0 +1,19 @@
+# Ubuntu 14.04 
+# Java 7 and Tomcat 7
+FROM imxieke/ubuntu:latest
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="oss@live.hk"
+
+# Default to UTF-8 file.encoding
+ENV LANG C.UTF-8
+
+RUN apt update -y \
+        && apt-get install -y --no-install-recommends \
+		bzip2 \
+		unzip \
+		xz-utils \
+                openjdk-7-jdk \
+                tomcat7 \
+	&& rm -rf /var/lib/apt/lists/*
+
+CMD ['/bin/bash']

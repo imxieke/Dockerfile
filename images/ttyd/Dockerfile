@@ -4,9 +4,9 @@ LABEL MAINTAINER="Cloudflying" \
 
 # Install packages
 RUN apk add --no-cache openssh-server pwgen ttyd bash \
-	mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && \
-    sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config && \
-    sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
+	&& mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
+	&& sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config \
+	&& sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
     && rm -fr /var/cache/apk/* \
 	&& rm -fr /tmp/*
 

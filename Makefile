@@ -14,7 +14,7 @@ runphp7:
 runmariadb:
 	docker run -d --name mariadb --hostname mariadb -v /home/imxieke/WorkSpaces/Volumes/mariadb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=19960318 -p 13306:3306 mariadb:10.3.2
 
-alpine: 
+alpine:
 	@cd ${IMAGES}/alpine \
 	&& docker build --no-cache -t ${PREFIX}/alpine:latest .
 
@@ -74,7 +74,7 @@ h5ai:
 	&& docker build --no-cache -t ${PREFIX}/h5ai:latest .
 
 nextcloud: 
-	@cd ${IMAGES}/nextCloud \
+	@cd ${IMAGES}/nextcloud \
 	&& docker build --no-cache -t ${PREFIX}/nextcloud:latest .
 
 nginx: 

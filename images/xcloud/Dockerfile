@@ -1,9 +1,9 @@
-FROM imxieke/php:latest
+FROM imxieke/php:alpine
 
 # Description: NextCloud Aria2 AriaNg yaaw h5ai
 
-LABEL MAINTAINER="Sky" \
-        MAIL="Sky@gfw.party"
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="<oss@live.hk>"
 
 RUN apk update \
   && echo "==> Install Aria2" \
@@ -34,6 +34,6 @@ RUN apk update \
   && rm -fr /var/cache/apk/* \
   && rm -fr /etc/nginx/conf.d/* \
   && rm -fr /tmp/*
-
+EXPOSE 80 6880
 ADD default.conf /etc/nginx/conf.d/default.conf
 CMD nginx && /usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.d/www.conf

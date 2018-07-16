@@ -42,8 +42,11 @@ kodcloud:
 	@cd ${IMAGES}/kodcloud \
 	&& docker build --no-cache -t ${PREFIX}/kodcloud:latest .
 
+php-alpine: 
+	@cd ${IMAGES}/php/alpine \
+	&& docker build --no-cache -t ${PREFIX}/php:alpine .
 php: 
-	@cd ${IMAGES}/php \
+	@cd ${IMAGES}/php/ubuntu \
 	&& docker build --no-cache -t ${PREFIX}/php:latest .
 
 java:
@@ -73,6 +76,14 @@ h5ai:
 nextcloud: 
 	@cd ${IMAGES}/nextCloud \
 	&& docker build --no-cache -t ${PREFIX}/nextcloud:latest .
+
+nginx: 
+	@cd ${IMAGES}/nginx \
+	&& docker build --no-cache -t ${PREFIX}/nginx:latest .
+
+owncloud: 
+	@cd ${IMAGES}/owncloud \
+	&& docker build --no-cache -t ${PREFIX}/owncloud:latest .
 
 ttyd:
 	@cd ${IMAGES}/ttyd \

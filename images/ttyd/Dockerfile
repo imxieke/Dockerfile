@@ -1,6 +1,6 @@
-FROM daocloud.io/xiekers/alpine:latest
-LABEL MAINTAINER=Sky \
-        MAIL=<Sky@gfw.party>
+FROM imxieke/alpine:latest
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="<oss@live.hk>"
 
 # Install packages
 RUN apk add --no-cache openssh-server pwgen ttyd bash \

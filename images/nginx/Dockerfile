@@ -1,6 +1,6 @@
 FROM imxieke/alpine:latest
-LABEL MAINTAINER="Sky" \
-        MAIL="Sky@gfw.party"
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="<oss@live.hk>"
 
 RUN apk update \
 	&& apk add --no-cache nginx \

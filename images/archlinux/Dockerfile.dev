@@ -1,6 +1,6 @@
 FROM imxieke/archlinux:base
-LABEL MAINTAINER=Sky \
-        MAIL=<Sky@gfw.party>
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="<oss@live.hk>"
 
 RUN pacman -Syyu --noconfirm \
     && pacman -S --noconfirm --force gcc make cmake neovim git \

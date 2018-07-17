@@ -1,6 +1,6 @@
-FROM daocloud.io/xiekers/archlinux:latest
-LABEL MAINTAINER=imxieke \
-        MAIL=<imxieke@qq.com>
+FROM imxieke/archlinux:latest
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="<oss@live.hk>"
 
 ENV AUTHORIZED_KEYS **None** \
     HOME=/root \

@@ -1,6 +1,6 @@
-FROM daocloud.io/xiekers/archlinux:latest
-LABEL MAINTAINER=Sky \
-        MAIL=<Sky@gfw.party>
+FROM imxieke/archlinux:latest
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="<oss@live.hk>"
 
 ADD run.sh /
 RUN chmod +x /*.sh

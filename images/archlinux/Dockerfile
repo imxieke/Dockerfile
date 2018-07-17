@@ -1,8 +1,8 @@
-FROM daocloud.io/xiekers/archlinux:base
-LABEL MAINTAINER=Sky \
-        MAIL=<Sky@gfw.party>
+FROM imxieke/archlinux:base
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="<oss@live.hk>"
 
-RUN pacman -Syyu --noconfirm \
+RUN pacman -Syyu --force --noconfirm \
     && pacman -Scc --noconfirm \
     && rm -fr /var/cache/pacman/pkg/* \
     && rm -fr /var/lib/pacman/*

@@ -3,3 +3,4 @@
 *.tar.*
 *.tgz.*
 *.zip
+.DS_Store

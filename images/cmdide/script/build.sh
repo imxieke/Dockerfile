@@ -58,13 +58,12 @@ golang(){
 	mkdir -p $HOME_DIR/.go/pkg
 	echo "export GOBIN="$HOME_DIR/.go/bin"" >> $HOME_DIR/.zshrc
 	echo "export GOPATH="$HOME_DIR/.go/"" 	>> $HOME_DIR/.zshrc
-	chown -R ${USER}:${USER} $HOME_DIR
-
 }
 
 set_node(){
 	echo "Set Node Environment"
-	npm config set registry https://registry.npm.taobao.org
+	# sudo -Hu ${USER} npm config set registry https://registry.npm.taobao.org
+	echo "registry=https://registry.npm.taobao.org" > ${HOME_DIR}/.npmrc
 	# echo "Install yarn"
 	# npm install -g yarn
 	# npm install -g  webpack
@@ -79,11 +78,21 @@ set_php(){
 	sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/cli/php.ini
 	sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/cli/php.ini
 	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/pkgs/zray-standalone-php72.tar.gz -O - | sudo tar -xzf - -C /opt
-	chown -R dev:dev /opt/zray
+	chown -R ${USER}:${USER} /opt/zray
 	ln -sf /opt/zray/zray.ini /etc/php/7.2/cli/conf.d/zray.ini
 	ln -sf /opt/zray/zray.ini /etc/php/7.2/fpm/conf.d/zray.ini
 	ln -sf /opt/zray/lib/zray.so /usr/lib/php/20170718/zray.so
 
+	# Current is 1.6.5 version
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/pkgs/composer.phar -O /bin/composer
+	chmod +x /bin/composer
+	sudo -Hu ${USER} composer config -g repo.packagist composer https://packagist.laravel-china.org
+
+
+	# WordPress Cli
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/pkgs/wp-cli.phar -O /bin/wp-cli
+	chmod +x /bin/composer
+	
 	#Adminer php mysql manager
 	mkdir -p /var/www/tools
 	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/code/adminer-4.6.3.php -O /var/www/tools/adminer.php
@@ -99,29 +108,22 @@ mailhog(){
 	chmod +x /usr/local/bin/mailhog
 }
 
-# Current is 1.6.5 version
-composer(){
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/pkgs/composer.phar -O /bin/composer
-	chmod +x /bin/composer
-}
-
-wp_cli(){
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/pkgs/wp-cli.phar -O /bin/wp-cli
-	chmod +x /bin/composer
-}
 
 webeditor(){
 	mkdir -p /var/www/ide
 	cd /var/www/ide
 	wget http://static.kodcloud.com/update/download/kodexplorer4.32.zip
-	unzip kodexplorer4.32.zip && rm -fr kodexplorer4.32.zip
-	chmod 755 -R /var/www && chown www-data:www-data -R /var/www
+	unzip kodexplorer4.32.zip 
+	rm -fr kodexplorer4.32.zip
+	chmod 755 -R /var/www
+	chown www-data:www-data -R /var/www
 }
 
 clean_env(){
 	apt autoremove -y
     apt-get clean all
     rm -fr /var/lib/apt/lists/*
+	chown -R ${USER}:${USER} $HOME_DIR
 }
 
 install_ext(){
@@ -133,8 +135,6 @@ install_ext(){
 	set_node
 	set_php
 	mailhog
-	composer
-	wp_cli
 	webeditor
 	clean_env
 }

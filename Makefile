@@ -26,6 +26,10 @@ buildbot:
 	@cd ${IMAGES}/buildbot \
 	&& docker build --no-cache -t ${PREFIX}/buildbot:latest .
 
+cmdide:
+	@cd ${IMAGES}/cmdide \
+	&& docker build --no-cache -t ${PREFIX}/cmdide:latest .
+
 debian:
 	@cd ${IMAGES}/debian \
 	&& docker build --no-cache -t ${PREFIX}/debian:latest .

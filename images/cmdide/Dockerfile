@@ -17,6 +17,9 @@ RUN chmod +x /build.sh \
 
 USER $USER
 WORKDIR $HOME_DIR
+
+VOLUME ['/var/www'] 
+VOLUME ['/etc/nginx/conf.d/'] 
 EXPOSE 22 80 1025 3306 8025 8888 11211
 
 CMD /bin/cmdide.sh

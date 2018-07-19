@@ -31,5 +31,5 @@ if [[ ${RUN_MODE} == "remote" ]]; then
 	echo "======================================================================"
 	echo "		Cmdide is Running 												"
 	echo "======================================================================"
-	exec /usr/sbin/sshd -D -e
+	exec sudo /usr/sbin/sshd -D -e
 fi

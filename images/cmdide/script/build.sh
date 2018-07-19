@@ -58,6 +58,7 @@ golang(){
 	mkdir -p $HOME_DIR/.go/pkg
 	echo "export GOBIN="$HOME_DIR/.go/bin"" >> $HOME_DIR/.zshrc
 	echo "export GOPATH="$HOME_DIR/.go/"" 	>> $HOME_DIR/.zshrc
+	chown -R ${USER}:${USER} $HOME_DIR
 
 }
 

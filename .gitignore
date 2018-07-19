@@ -4,3 +4,4 @@
 *.tgz.*
 *.zip
 .DS_Store
+*.log

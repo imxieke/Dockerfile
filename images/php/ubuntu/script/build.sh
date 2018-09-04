@@ -1,59 +1,105 @@
 #!/usr/bin/env bash
 
+msgpack(){
+	cd $BUILD_DIR
+	PKG_NAME="msgpack"
+	PKG_VER="2.0.2"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
+	phpize && ./configure && make -j4 && make install 
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
+}
+
+yaml(){
+	cd $BUILD_DIR
+	PKG_NAME="yaml"
+	PKG_VER="2.0.2"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
+	phpize && ./configure && make -j4 && make install 
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
+}
+
+yaf(){
+	cd $BUILD_DIR
+	PKG_NAME="yaf"
+	PKG_VER="3.0.7"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
+	phpize && ./configure && make -j4 && make install 
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
+}
+
+yar(){
+	cd $BUILD_DIR
+	PKG_NAME="yar"
+	PKG_VER="2.0.4"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
+	phpize && ./configure --enable-msgpack && make -j4 && make install 
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
+}
+
 mongodb(){
 	# wget http://pecl.php.net/get/mongodb-1.5.1.tgz
 	cd $BUILD_DIR
-	NAME='mongodb'
-	MONGODB_VER="1.5.1"
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/mongodb-$MONGODB_VER.tgz
-	tar zxvf $NAME-$MONGODB_VER.tgz && cd $NAME-$MONGODB_VER
+	PKG_NAME='mongodb'
+	PKG_VER="1.5.1"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
 	phpize && ./configure && make -j4 && make install 
-	echo "extension=mongodb.so" > /etc/php/7.2/cli/conf.d/mongodb.ini
-	echo "extension=mongodb.so" > /etc/php/7.2/fpm/conf.d/mongodb.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
 }
 
 redis(){
 	cd $BUILD_DIR
-	REDIS_VER="4.1.0"
-	# wget https://pecl.php.net/get/redis-4.1.0.tgz
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/redis-$REDIS_VER.tgz
-	tar zxvf redis-$REDIS_VER.tgz && cd redis-$REDIS_VER
+	PKG_NAME="redis"
+	PKG_VER="4.1.0"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
 	phpize && ./configure && make -j4 && make install 
-	echo "extension=redis.so" > /etc/php/7.2/cli/conf.d/redis.ini
-	echo "extension=redis.so" > /etc/php/7.2/fpm/conf.d/redis.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
 }
 
 rar(){
 	cd $BUILD_DIR
-	RAR_VER="4.0.0"
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/rar-$RAR_VER.tgz
-	tar zxvf rar-$RAR_VER.tgz && cd rar-$RAR_VER
+	PKG_NAME="rar"
+	PKG_VER="4.0.0"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
 	phpize && ./configure && make -j4 && make install
-	echo "extension=rar.so" > /etc/php/7.2/cli/conf.d/rar.ini
-	echo "extension=rar.so" > /etc/php/7.2/fpm/conf.d/rar.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
 	# wget https://pecl.php.net/get/rar-4.0.0.tgz
 }
 
 swoole(){
 	cd $BUILD_DIR
-	SWOOLE_VER="4.0.1"
-	# wget https://pecl.php.net/get/swoole-4.0.1.tgz
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/swoole-$SWOOLE_VER.tgz
-	tar zxvf swoole-$SWOOLE_VER.tgz && cd swoole-$SWOOLE_VER
+	PKG_NAME="swoole"
+	PKG_VER="4.0.1"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
 	phpize && ./configure && make -j4 && make install
-	echo "extension=swoole.so" > /etc/php/7.2/cli/conf.d/swoole.ini
-	echo "extension=swoole.so" > /etc/php/7.2/fpm/conf.d/swoole.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
 }
 
 mcrypt(){
 	cd $BUILD_DIR
-	MCRYPT_VER="1.0.1"
+	PKG_NAME="mcrypt"
+	PKG_VER="1.0.1"
 	# wget https://pecl.php.net/get/mcrypt-1.0.1.tgz
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/mcrypt-$MCRYPT_VER.tgz
-	tar zxvf mcrypt-$MCRYPT_VER.tgz && cd mcrypt-$MCRYPT_VER
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
 	phpize && ./configure && make -j4 && make install
-	echo "extension=mcrypt.so" > /etc/php/7.2/cli/conf.d/mcrypt.ini
-	echo "extension=mcrypt.so" > /etc/php/7.2/fpm/conf.d/mcrypt.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/7.2/fpm/conf.d/${PKG_NAME}.ini
 }
 
 ioncube(){
@@ -66,6 +112,10 @@ install_ext(){
 	BUILD_DIR="/tmp/phpbuild"
 	mkdir -p $BUILD_DIR
 	cd $BUILD_DIR
+	msgpack
+	yaf
+	yaml
+	yar
 	mongodb
 	redis
 	rar

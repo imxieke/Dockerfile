@@ -48,10 +48,14 @@ kodcloud:
 
 php-alpine: 
 	@cd ${IMAGES}/php/alpine \
-	&& docker build --no-cache -t ${PREFIX}/php:alpine .
+	&& docker build --no-cache -t ${PREFIX}/alpine/php:alpine .
 php: 
 	@cd ${IMAGES}/php/ubuntu \
-	&& docker build --no-cache -t ${PREFIX}/php:latest .
+	&& docker build --no-cache -t ${PREFIX}/ubuntu/php:latest .
+
+php-multiple: 
+	@cd ${IMAGES}/php/ubuntu \
+	&& docker build --no-cache -t ${PREFIX}/multiple/php:latest .
 
 java:
 	@cd ${IMAGES}/java \

@@ -15,8 +15,8 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && mkdir -p /run/nginx/ \
     && chmod 755 -R /var/www \
     && chown -R www-data:www-data /var/www \
-    &&  chmod +x /build.sh \
-    &&  chmod +x /bin/start.sh \
+    && chmod +x /build.sh \
+    && chmod +x /bin/start.sh \
     && bash /build.sh \
     && apt autoremove -y \
     && apt-get clean all \

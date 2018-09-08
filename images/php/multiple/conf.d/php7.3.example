@@ -9,7 +9,7 @@ server
         location ~ [^/]\.php(/|$)
         {
             try_files $uri =404;
-            fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
+            fastcgi_pass  unix:/var/run/php/php7.3-fpm.sock;
             # fastcgi_pass 127.0.0.1:9000;
             fastcgi_index index.php;
             include fastcgi.conf;
@@ -24,10 +24,10 @@ server
         }
 
         location /nginx_status {
-        stub_status on;
-        access_log off;
-        allow 127.0.0.1;
-        deny all;
+            stub_status on;
+            access_log off;
+            allow 127.0.0.1;
+            deny all;
         }
 
         location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$

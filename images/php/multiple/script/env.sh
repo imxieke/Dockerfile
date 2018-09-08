@@ -8,7 +8,7 @@ apt-get -y upgrade
 
 # Install Some PPAs
 
-apt-get install -y software-properties-common wget curl locales
+apt-get install -y software-properties-common wget curl locales make gcc g++ gawk
 
 # Force Locale
 echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
@@ -170,33 +170,33 @@ chmod 755 -R /var/www
 chown -R www-data:www-data /var/www
 
 php56() {
-    sudo update-alternatives --set php /usr/bin/php5.6
-    sudo update-alternatives --set php-config /usr/bin/php-config5.6
-    sudo update-alternatives --set phpize /usr/bin/phpize5.6
+    update-alternatives --set php /usr/bin/php5.6
+    update-alternatives --set php-config /usr/bin/php-config5.6
+    update-alternatives --set phpize /usr/bin/phpize5.6
 }
 
 php70() {
-    sudo update-alternatives --set php /usr/bin/php7.0
-    sudo update-alternatives --set php-config /usr/bin/php-config7.0
-    sudo update-alternatives --set phpize /usr/bin/phpize7.0
+    update-alternatives --set php /usr/bin/php7.0
+    update-alternatives --set php-config /usr/bin/php-config7.0
+    update-alternatives --set phpize /usr/bin/phpize7.0
 }
 
 php71() {
-    sudo update-alternatives --set php /usr/bin/php7.1
-    sudo update-alternatives --set php-config /usr/bin/php-config7.1
-    sudo update-alternatives --set phpize /usr/bin/phpize7.1
+    update-alternatives --set php /usr/bin/php7.1
+    update-alternatives --set php-config /usr/bin/php-config7.1
+    update-alternatives --set phpize /usr/bin/phpize7.1
 }
 
 php72() {
-    sudo update-alternatives --set php /usr/bin/php7.2
-    sudo update-alternatives --set php-config /usr/bin/php-config7.2
-    sudo update-alternatives --set phpize /usr/bin/phpize7.2
+    update-alternatives --set php /usr/bin/php7.2
+    update-alternatives --set php-config /usr/bin/php-config7.2
+    update-alternatives --set phpize /usr/bin/phpize7.2
 }
 
 php73() {
-    sudo update-alternatives --set php /usr/bin/php7.3
-    sudo update-alternatives --set php-config /usr/bin/php-config7.3
-    sudo update-alternatives --set phpize /usr/bin/phpize7.3
+    update-alternatives --set php /usr/bin/php7.3
+    update-alternatives --set php-config /usr/bin/php-config7.3
+    update-alternatives --set phpize /usr/bin/phpize7.3
 }
 
 ioncube(){

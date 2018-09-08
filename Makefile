@@ -55,7 +55,7 @@ php:
 
 php-multiple: 
 	@cd ${IMAGES}/php/multiple \
-	&& docker build --no-cache -t ${PREFIX}/php:latest .
+	&& docker build --no-cache -t ${PREFIX}/php:multiple .
 
 java:
 	@cd ${IMAGES}/java \

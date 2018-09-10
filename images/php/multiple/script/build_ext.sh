@@ -48,7 +48,6 @@ ioncube(){
 	echo "zend_extension = ioncube.so" >> /etc/php/5.6/fpm/php.ini
 }
 
-
 # Install PHP Extensions
 yaml(){
 	PHPVER=$1
@@ -60,6 +59,20 @@ yaml(){
 	phpize && ./configure && make -j4 && make install
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
+	cd .. && rm -fr ${PKG_NAME}-${PKG_VER}
+}
+
+yaconf(){
+	PHPVER=$1
+	cd $BUILD_DIR
+	PKG_NAME="yaconf"
+	PKG_VER="1.0.7"
+	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
+	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
+	phpize && ./configure && make -j4 && make install
+	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
+	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
+	cd .. && rm -fr ${PKG_NAME}-${PKG_VER}
 }
 
 yaf(){
@@ -72,18 +85,7 @@ yaf(){
 	phpize && ./configure && make -j4 && make install
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
-}
-
-yar(){
-	PHPVER=$1
-	cd $BUILD_DIR
-	PKG_NAME="yar"
-	PKG_VER="2.0.4"
-	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/src/${PKG_NAME}-${PKG_VER}.tgz
-	tar zxvf ${PKG_NAME}-${PKG_VER}.tgz && cd ${PKG_NAME}-${PKG_VER}
-	phpize && ./configure --enable-msgpack && make -j4 && make install
-	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
-	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
+	cd .. && rm -fr ${PKG_NAME}-${PKG_VER}
 }
 
 mongodb(){
@@ -96,6 +98,7 @@ mongodb(){
 	phpize && ./configure && make -j4 && make install
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
+	cd .. && rm -fr ${PKG_NAME}-${PKG_VER}
 }
 
 redis(){
@@ -108,6 +111,7 @@ redis(){
 	phpize && ./configure && make -j4 && make install
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
+	cd .. && rm -fr ${PKG_NAME}-${PKG_VER}
 }
 
 rar(){
@@ -120,8 +124,8 @@ rar(){
 	phpize && ./configure && make -j4 && make install
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
+	cd .. && rm -fr ${PKG_NAME}-${PKG_VER}
 }
-
 
 swoole(){
 	PHPVER=$1
@@ -133,11 +137,13 @@ swoole(){
 	phpize && ./configure && make -j4 && make install
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/cli/conf.d/${PKG_NAME}.ini
 	echo "extension=${PKG_NAME}.so" > /etc/php/${PHPVER}/fpm/conf.d/${PKG_NAME}.ini
+	cd .. && rm -fr ${PKG_NAME}-${PKG_VER}
 }
 
 php56ext(){
 	php56
 	yaml 5.6
+	yaconf 5.6
 	yaf 5.6
 	yar 5.6
 	mongodb 5.6
@@ -149,6 +155,7 @@ php56ext(){
 php70ext(){
 	php70
 	yaml 7.0
+	yaconf 7.0
 	yaf 7.0
 	yar 7.0
 	mongodb 7.0
@@ -160,6 +167,7 @@ php70ext(){
 php71ext(){
 	php71
 	yaml 7.1
+	yaconf 7.1
 	yaf 7.1
 	yar 7.1
 	mongodb 7.1
@@ -170,8 +178,9 @@ php71ext(){
 
 php72ext(){
 	php72
-	yaml 7.2
+	yaconf 7.2
 	yaf 7.2
+	yaml 7.2
 	yar 7.2
 	mongodb 7.2
 	redis 7.2
@@ -181,12 +190,12 @@ php72ext(){
 
 php73ext(){
 	php73
-	yaml 7.3
+	yaconf 7.3
 	yaf 7.3
+	yaml 7.3
 	yar 7.3
 	mongodb 7.3
 	redis 7.3
-	rar 7.3
 	swoole 7.3
 }
 
@@ -194,6 +203,7 @@ install_ext(){
 	BUILD_DIR="/tmp/phpbuild"
 	mkdir -p $BUILD_DIR
 	cd $BUILD_DIR
+	ioncube
 	# php56ext
 	php70ext
 	# php71ext
@@ -201,7 +211,6 @@ install_ext(){
 	# php73ext
 }
 
-ioncube
 install_ext
 apt purge -y g++ make wget
 rm -fr /tmp/*

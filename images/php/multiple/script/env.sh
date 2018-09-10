@@ -8,7 +8,7 @@ apt-get -y upgrade
 
 # Install Some PPAs
 
-apt-get install -y software-properties-common wget curl locales make gcc g++ gawk
+apt-get install -y software-properties-common wget curl locales make gcc g++ gawk libyaml-dev
 
 # Force Locale
 echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
@@ -168,3 +168,5 @@ rm -fr /etc/nginx/nginx.conf
 rm -fr /etc/nginx/conf.d/*
 chmod 755 -R /var/www
 chown -R www-data:www-data /var/www
+apt purge -y g++ make wget
+rm -fr /tmp/*

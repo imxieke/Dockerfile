@@ -15,8 +15,6 @@ apt-add-repository ppa:ondrej/php -y
 
 #Install WebServer
 apt-get install -y nginx
-rm /etc/nginx/sites-enabled
-rm /etc/nginx/sites-available
 
 # Install PHP Stuffs
 # PHP 7.3
@@ -168,7 +166,9 @@ EOF
 
 # Custom Config
 # rm -fr /etc/nginx/nginx.conf
-rm -fr /etc/nginx/conf.d/*
+rm -fr /etc/nginx/sites-enabled
+rm -fr /etc/nginx/sites-available
+
 chmod 755 -R /var/www
 chown -R www-data:www-data /var/www
 

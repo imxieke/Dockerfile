@@ -116,7 +116,7 @@ webeditor(){
 	VER="4.35"
 	mkdir -p /var/www/ide
 	cd /var/www/ide
-	wget http://static.kodcloud.com/update/download/${NAME}${VER}.zip
+	wget https://mirrors.cs.edu.rs/PHP/${NAME}${VER}.zip
 	unzip ${NAME}${VER}.zip 
 	rm -fr ${NAME}${VER}.zip
 	chmod 755 -R /var/www

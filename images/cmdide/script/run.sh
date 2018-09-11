@@ -19,7 +19,7 @@ if [[ ${USER} != "cmdide" ]]; then
 fi
 
 if [[ ${RUN_MODE} == "" || ${RUN_MODE} == "local" ]]; then
-	return 0
+	exit 0
 fi
 
 if [[ ${RUN_MODE} == "remote" ]]; then

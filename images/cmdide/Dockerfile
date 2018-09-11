@@ -1,4 +1,4 @@
-FROM imxieke/php:latest
+FROM imxieke/php:multiple
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 

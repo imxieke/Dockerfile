@@ -11,13 +11,14 @@ fi
 build(){
 	apt update -y --fix-missing
     apt install -y --no-install-recommends openssh-server openssh-sftp-server pwgen supervisor sudo git zsh neovim wget curl unzip whois \
-    	golang nodejs npm python python3 python-pip python3-pip \
-    	mariadb-client mongodb-clients redis-server memcached sqlite3 libsqlite3-dev \
+    	golang nodejs npm python python3 python-pip python3-pip mariadb-client mongodb-clients redis-server memcached sqlite3 libsqlite3-dev \
     	beanstalkd net-tools apt-transport-https  make cmake g++ software-properties-common
 }
 
 # Set $USER and root user Password
 user(){
+	USER=$1
+	PASSWD=$2
     useradd -d /home/${USER} -m -s /bin/zsh ${USER}
     echo "${USER}:${PASSWD}" | chpasswd
     echo "root:${PASSWD}" | chpasswd
@@ -28,6 +29,7 @@ user(){
 
 # Permision for remote connect Container via ssh
 sshd(){
+	HOME_DIR=$1
 	echo "########## Config sshd #################"
 	mkdir -p /var/run/sshd
 	sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
@@ -44,6 +46,7 @@ sshd(){
 }
 
 ohmyzsh(){
+	HOME_DIR=$1
 	echo "Cloning ohmyzsh to $HOME_DIR"
 	#sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ${HOME_DIR}/.oh-my-zsh
@@ -73,6 +76,7 @@ set_node(){
 }
 
 set_php(){
+	USER=$1
 	# Set Some PHP CLI Settings
 	sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/cli/php.ini
 	sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/cli/php.ini
@@ -87,7 +91,6 @@ set_php(){
 	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/pkgs/composer.phar -O /bin/composer
 	chmod +x /bin/composer
 	sudo -Hu ${USER} composer config -g repo.packagist composer https://packagist.laravel-china.org
-
 
 	# WordPress Cli
 	wget https://coding.net/u/imxieke/p/attachment/git/raw/master/pkgs/wp-cli.phar -O /bin/wp-cli
@@ -108,35 +111,41 @@ mailhog(){
 	chmod +x /usr/local/bin/mailhog
 }
 
-
 webeditor(){
+	NAME="kodexplorer"
+	VER="4.35"
 	mkdir -p /var/www/ide
 	cd /var/www/ide
-	wget http://static.kodcloud.com/update/download/kodexplorer4.32.zip
-	unzip kodexplorer4.32.zip 
-	rm -fr kodexplorer4.32.zip
+	wget http://static.kodcloud.com/update/download/${NAME}${VER}.zip
+	unzip ${NAME}${VER}.zip 
+	rm -fr ${NAME}${VER}.zip
 	chmod 755 -R /var/www
 	chown www-data:www-data -R /var/www
 }
 
 clean_env(){
+	USER=$1
+	HOME_DIR=$2
 	apt autoremove -y
     apt-get clean all
     rm -fr /var/lib/apt/lists/*
-	chown -R ${USER}:${USER} $HOME_DIR
+	chown -R ${USER}:${USER} ${HOME_DIR}
 }
 
 install_ext(){
+	USER=$1
+	PASSWD=$2
+	HOME_DIR=$3
 	build
-	user
-	sshd
-	ohmyzsh
-	golang
-	set_node
-	set_php
+	user 	${USER} ${PASSWD}
+	sshd 	${HOME_DIR}
+	ohmyzsh ${HOME_DIR}
+	golang 	${HOME_DIR}
+	set_node ${HOME_DIR}
+	set_php ${USER}
 	mailhog
 	webeditor
-	clean_env
+	clean_env ${USER} ${HOME_DIR}
 }
 
-install_ext
+install_ext ${USER} ${PASSWD} ${HOME_DIR}

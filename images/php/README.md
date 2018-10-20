@@ -13,4 +13,4 @@ Ubuntu:
  - Yaml
  - Swoole
  - Iooncube
- - And More PHP Base Extension, Please View Via : php --ini
+ - And More PHP Base Extension, View Via : php --ini

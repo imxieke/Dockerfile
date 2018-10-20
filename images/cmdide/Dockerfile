@@ -22,6 +22,6 @@ WORKDIR ${HOME_DIR}
 
 VOLUME ['/var/www'] 
 VOLUME ['/etc/nginx/conf.d/'] 
-EXPOSE 22 80 443 1025 8024 8888 11211
+EXPOSE 22 80 443
 
 CMD /bin/run.sh

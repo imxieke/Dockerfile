@@ -1,7 +1,12 @@
 IMAGES:="`pwd`/images"
 # Push to DaoCloud Registry
-PREFIX:="imxieke"
+# PREFIX:="daocloud.io/imxieke"
+
+# Push to Qiniu Cloud Registry
+PREFIX:="reg.qiniu.com/imxieke"
+# Offcial Registry
 # PREFIX:="imxieke"
+
 # Push to Docker Offcial Registry
 
 all: # include all command (Function)

@@ -12,7 +12,6 @@ PREFIX="reg.qiniu.com/imxieke"
 # Offcial Registry
 # PREFIX:="imxieke"
 
-
 function build()
 {
 	if [[ ! -d "$IMG_DIR/$2" ]]; then

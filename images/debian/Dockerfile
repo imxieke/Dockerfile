@@ -1,9 +1,11 @@
-FROM debian:buster
+FROM debian:latest
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
 ENV ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
-RUN apt update \
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
+	&& sed -i 's/deb\ http:\/\/security/#deb\ http:\/\/security/g' /etc/apt/sources.list \
+	&& apt update \
 	&& apt upgrade -y \
 	&& apt autoremove -y \
 	&& apt-get clean all \

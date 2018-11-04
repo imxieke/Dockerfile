@@ -10,7 +10,11 @@ IMG_DIR="`pwd`/images"
 # Push to Qiniu Cloud Registry
 PREFIX="reg.qiniu.com/imxieke"
 # Offcial Registry
+<<<<<<< HEAD:qiniu.sh
 # PREFIX="imxieke"
+=======
+# PREFIX:="imxieke"
+>>>>>>> e02f890d8eb082d226894c766bac4dc8388f4ed6:build.sh
 
 function build()
 {

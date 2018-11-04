@@ -1,0 +1,27 @@
+FROM reg.qiniu.com/imxieke/ubuntu:xenial-vncenv
+ENV DEBIAN_FRONTEND noninteractive
+ENV USER=ubuntu
+ENV HOME=/home/${USER}
+ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" \
+    MAINTAINER=Cloudflying \
+    MAIL=oss@live.hk \
+    PASSWD=ubuntu \
+    TERM=xterm \
+    NO_VNC_HOME=/opt/noVNC \
+    VNC_COL_DEPTH=24 \
+    VNC_RESOLUTION=1360x768 \
+    VNC_PW=ubuntu \
+    VNC_VIEW_ONLY=false \
+    DISPLAY=:1 \
+    VNC_PORT=5901 \
+    NO_VNC_PORT=6901
+
+COPY ./unity/startup.sh /bin/startup.sh
+COPY ./unity/unity.sh tmp/
+
+RUN chmod +x /tmp/unity.sh \
+    && /tmp/unity.sh
+
+# USER ${USER}
+EXPOSE 6080 ${VNC_PORT} ${NO_VNC_PORT}
+CMD ["/bin/bash", "/bin/startup.sh"]

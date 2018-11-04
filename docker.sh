@@ -8,10 +8,9 @@ IMG_DIR="`pwd`/images"
 # PREFIX:="daocloud.io/imxieke"
 
 # Push to Qiniu Cloud Registry
-PREFIX="reg.qiniu.com/imxieke"
+# PREFIX="reg.qiniu.com/imxieke"
 # Offcial Registry
-# PREFIX:="imxieke"
-
+PREFIX="imxieke"
 
 function build()
 {
@@ -19,7 +18,6 @@ function build()
 		echo "Catelog $2 or Dockerfile Not Exist"
 		exit 1
 	fi
-
 	cd "$IMG_DIR/$2"
 	if [[ $3 != '' ]]; then
 		if [[ $3 == 'latest' ]]; then	

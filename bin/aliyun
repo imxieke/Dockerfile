@@ -6,15 +6,11 @@ IMG_DIR="`pwd`/images"
 
 # Push to DaoCloud Registry
 # PREFIX:="daocloud.io/imxieke"
-
+# docker login --username=xxx@aliyun.com registry.cn-hongkong.aliyuncs.com
 # Push to Qiniu Cloud Registry
-PREFIX="reg.qiniu.com/imxieke"
+PREFIX="registry.cn-hongkong.aliyuncs.com"
 # Offcial Registry
-<<<<<<< HEAD:qiniu.sh
 # PREFIX="imxieke"
-=======
-# PREFIX:="imxieke"
->>>>>>> e02f890d8eb082d226894c766bac4dc8388f4ed6:build.sh
 
 function build()
 {
@@ -50,9 +46,15 @@ function push()
 	fi
 }
 
+function pull()
+{
+	docker pull ${PREFIX}/$2
+}
+
 function usage()
 {
-	echo "	Docker Build Tool
+	echo "	Docker Build Tool 
+		=>Only Avaiable for qiniu
 /-----------------------------------\\
 |	build image name tag         |
 |	push  image name tag         |
@@ -61,14 +63,17 @@ function usage()
 }
 
 case $1 in
-	build ) 
+	build )
 		build $1 $2 $3 $4 $5 $6
 		;;
 
-	push ) 
+	push )
 		push $1 $2 $3 $4 $5 $6
 		;;
 
+	pull )
+		pull $1 $2 $3 $4 $5 $6
+		;;
 	* ) 
 		# echo "Command Faild"
 		usage

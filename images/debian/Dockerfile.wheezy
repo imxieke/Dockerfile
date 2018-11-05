@@ -3,7 +3,9 @@ FROM debian:wheezy
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
-ENV ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+ENV DEBIAN_FRONTEND noninteractive \
+	PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 	&& sed -i 's/deb\ http:\/\/security/#deb\ http:\/\/security/g' /etc/apt/sources.list \
 	&& apt-get update \

@@ -1,10 +1,10 @@
-FROM imxieke/alpine:latest
+FROM imxieke/alpine:edge
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
 RUN apk update && apk upgrade \
 	&& apk --no-cache add openssh openssh-sftp-server neovim git curl wget bash zsh gcc g++ make cmake \
-	automake autoconf luajit-dev libc-dev pcre pcre-dev readline-dev openssl openssl-dev musl musl-dev \
+		automake autoconf luajit-dev libc-dev pcre pcre-dev readline-dev openssl openssl-dev musl musl-dev \
 	&& git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh \
     && cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc \
 	&& sed -i -e 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \

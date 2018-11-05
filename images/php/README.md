@@ -14,3 +14,13 @@ Ubuntu:
  - Swoole
  - Iooncube
  - And More PHP Base Extension, View Via : php --ini
+
+ # PHP 7.2
+
+#feature
+
+* swoole
+* redis 
+* mongodb
+* memcache
+* memcached

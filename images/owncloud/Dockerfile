@@ -18,8 +18,8 @@ RUN echo "==> Download NextCloud" \
         && chown www-data:www-data -R /var/www \
         && apt purge -y wget unzip \
         && apt autoremove -y \
-		&& apt-get clean all \
-		&& rm -fr /var/lib/apt/lists/*
+	&& apt-get clean all \
+	&& rm -fr /var/lib/apt/lists/*
 
 EXPOSE 80
 CMD /bin/start.sh

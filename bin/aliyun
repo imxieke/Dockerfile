@@ -3,15 +3,9 @@
 # Desc:   Push to Docker Registry
 
 IMG_DIR="`pwd`/images"
-
-# Push to DaoCloud Registry
-# PREFIX:="daocloud.io/imxieke"
 # docker login --username=xxx@aliyun.com registry.cn-hongkong.aliyuncs.com
-# Push to Qiniu Cloud Registry
-# PREFIX="registry.cn-hongkong.aliyuncs.com"
-PREFIX="registry-vpc.cn-hongkong.aliyuncs.com"
-# Offcial Registry
-# PREFIX="imxieke"
+# PREFIX="registry.cn-hongkong.aliyuncs.com/imxieke"
+PREFIX="registry-vpc.cn-hongkong.aliyuncs.com/imxieke"
 
 function build()
 {

@@ -12,7 +12,7 @@ function init_env()
 	echo '=>Install Xfce4 UI'
 	# apt install -y firefox firefox-locale-en firefox-locale-zh-hans
 	apt update
-	apt isntall -y xfce4 xfce4-terminal
+	apt install -y xfce4 xfce4-terminal
 	apt autoremove -y \
 	apt-get clean all \
 	rm -fr /var/lib/apt/lists/*

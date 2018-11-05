@@ -1,4 +1,4 @@
-FROM reg.qiniu.com/imxieke/ubuntu:vncenv
+FROM registry.cn-hongkong.aliyuncs.com/imxieke/ubuntu:vncenv
 LABEL MAINTAINER=Cloudflying \
         MAIL=oss@live.hk
 

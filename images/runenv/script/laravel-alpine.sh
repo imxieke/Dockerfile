@@ -28,3 +28,6 @@ git clone --depth=1 https://git.dev.tencent.com/imxieke/ohmyzsh.git ${HOME}/.oh-
 cp ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
 chown -R ${USER}:${USER} ${HOME}
 sed -i "s/${USER}:\/bin\/sh/${USER}:\/bin\/zsh/g" /etc/passwd
+
+
+sudo -Hu ${USER} composer config -g repo.packagist composer https://packagist.laravel-china.org

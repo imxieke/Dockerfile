@@ -1,0 +1,15 @@
+FROM registry.cn-hongkong.aliyuncs.com/imxieke/alpine:latest
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="oss@live.hk"
+
+ENV USER=laravel \
+	PASSWD=laravel
+ENV HOME=/home/${USER}
+ADD script/laravel-alpine.sh /tmp/build.sh
+
+RUN chmod +x /tmp/build.sh \
+	&& sh /tmp/build.sh
+
+USER ${USER}
+WORKDIR ${HOME}
+CMD ['/bin/sh']

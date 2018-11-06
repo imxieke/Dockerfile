@@ -12,7 +12,7 @@ apk add shadow sudo neovim git zsh wget curl jq openssl nginx php7-fpm php7-open
 		php7-pdo_dblib php7-pgsql php7-pdo_odbc php7-xdebug php7-zip php7-ctype php7-amqp php7-mcrypt php7-bcmath php7-calendar \
 		php7-tidy  php7-dom php7-sockets php7-zmq php7-memcached php7-soap php7-apcu php7-sysvmsg php7-zlib php7-embed php7-ftp \
 		php7-pdo php7-bz2 php7-simplexml php7-xmlwriter php7-sqlite3 composer php7-pecl-redis php7-pecl-yaml php7-pecl-mongodb \
-		php7-pecl-mcrypt php7-pecl-memcached php7-pecl-ssh2 php7-pecl-event php7-pecl-oauth php7-pecl-xdebug
+		php7-pecl-mcrypt php7-pecl-memcached php7-pecl-event php7-pecl-oauth php7-pecl-xdebug
 
 apk update
 echo "=> Clean Cache And Package"

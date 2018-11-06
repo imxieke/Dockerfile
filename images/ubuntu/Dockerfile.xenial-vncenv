@@ -1,6 +1,6 @@
 # Ubuntu 16.04
 # Base image for vnc
-FROM imxieke/ubuntu:xenial
+FROM registry.cn-hongkong.aliyuncs.com/imxieke/ubuntu:xenial
 
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"

@@ -16,7 +16,7 @@ function build()
 
 	cd "$IMG_DIR/$2"
 	if [[ $3 != '' ]]; then
-		if [[ $3 == 'latest' ]]; then	
+		if [[ $3 == 'latest' ]]; then
 			docker $1 --no-cache -t ${PREFIX}/$2:latest .
 		else
 			docker $1 --no-cache -t ${PREFIX}/$2:$3 --file=Dockerfile.$3 .

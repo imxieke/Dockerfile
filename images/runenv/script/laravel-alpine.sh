@@ -11,7 +11,8 @@ apk add shadow sudo neovim git zsh wget curl jq openssl nginx php7-fpm php7-open
 		php7-mailparse php7-json php7-xml php7-iconv php7-sysvshm php7-curl php7-shmop php7-odbc php7-phar php7-pdo_pgsql php7-imap \
 		php7-pdo_dblib php7-pgsql php7-pdo_odbc php7-xdebug php7-zip php7-ctype php7-amqp php7-mcrypt php7-bcmath php7-calendar \
 		php7-tidy  php7-dom php7-sockets php7-zmq php7-memcached php7-soap php7-apcu php7-sysvmsg php7-zlib php7-embed php7-ftp \
-		php7-pdo php7-bz2 php7-simplexml php7-xmlwriter php7-sqlite3 composer
+		php7-pdo php7-bz2 php7-simplexml php7-xmlwriter php7-sqlite3 composer php7-pecl-redis php7-pecl-yaml php7-pecl-mongodb \
+		php7-pecl-mcrypt php7-pecl-memcached php7-pecl-ssh2 php7-pecl-event php7-pecl-oauth php7-pecl-xdebug
 
 apk update
 echo "=> Clean Cache And Package"
@@ -28,6 +29,7 @@ git clone --depth=1 https://git.dev.tencent.com/imxieke/ohmyzsh.git ${HOME}/.oh-
 cp ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
 chown -R ${USER}:${USER} ${HOME}
 sed -i "s/${USER}:\/bin\/sh/${USER}:\/bin\/zsh/g" /etc/passwd
+sed -i "s/robbyrussell/strug/g" ${HOME}/.zshrc
 
 
 sudo -Hu ${USER} composer config -g repo.packagist composer https://packagist.laravel-china.org

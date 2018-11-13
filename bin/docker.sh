@@ -54,6 +54,7 @@ function usage()
 /-----------------------------------\\
 |	build image name tag         |
 |	push  image name tag         |
+|	pull  image name tag         |
 \\-----------------------------------/
 "
 }

@@ -4,8 +4,8 @@
 
 IMG_DIR="`pwd`/images"
 # docker login --username=xxx@aliyun.com registry.cn-hongkong.aliyuncs.com
-# PREFIX="registry.cn-hongkong.aliyuncs.com/imxieke"
-PREFIX="registry-vpc.cn-hongkong.aliyuncs.com/imxieke"
+PREFIX="registry.cn-hongkong.aliyuncs.com/imxieke"
+# PREFIX="registry-vpc.cn-hongkong.aliyuncs.com/imxieke"
 
 function build()
 {
@@ -53,6 +53,7 @@ function usage()
 /-----------------------------------\\
 |	build image name tag         |
 |	push  image name tag         |
+|	pull  image name tag         |
 \\-----------------------------------/
 "
 }

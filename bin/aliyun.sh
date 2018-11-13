@@ -2,15 +2,13 @@
 # Author: Cloudflying
 # Desc:   Push to Docker Registry
 
+# Mirros : https://22bvsrc3.mirror.aliyuncs.com
+
+
 IMG_DIR="`pwd`/images"
-
-# Push to DaoCloud Registry
-# PREFIX:="daocloud.io/imxieke"
-
-# Push to Qiniu Cloud Registry
-PREFIX="reg.qiniu.com/imxieke"
-# Offcial Registry
-# PREFIX="imxieke"
+# docker login --username=xxx@aliyun.com registry.cn-hongkong.aliyuncs.com
+# PREFIX="registry.cn-hongkong.aliyuncs.com/imxieke"
+PREFIX="registry-vpc.cn-hongkong.aliyuncs.com/imxieke"
 
 function build()
 {
@@ -21,7 +19,7 @@ function build()
 
 	cd "$IMG_DIR/$2"
 	if [[ $3 != '' ]]; then
-		if [[ $3 == 'latest' ]]; then	
+		if [[ $3 == 'latest' ]]; then
 			docker $1 --no-cache -t ${PREFIX}/$2:latest .
 		else
 			docker $1 --no-cache -t ${PREFIX}/$2:$3 --file=Dockerfile.$3 .

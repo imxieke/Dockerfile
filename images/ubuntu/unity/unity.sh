@@ -70,22 +70,30 @@ echo '=>Set Locale'
 echo "=>Generate locales en_US.UTF-8"
 
 touch /var/lib/locales/supported.d/local
+touch /var/lib/locales/supported.d/en
+
+echo "en_US.UTF-8 UTF-8" > /var/lib/locales/supported.d/en
+
 echo "en_US.UTF-8 UTF-8" > /var/lib/locales/supported.d/local
 echo "zh_CN.UTF-8 UTF-8" > /var/lib/locales/supported.d/local
 echo "zh_CN.GBK GBK" > /var/lib/locales/supported.d/local
 echo "zh_CN GB2312" > /var/lib/locales/supported.d/local
 
-echo "LANGUAGE=\"zh_CN:zh:en_US:en\"" >> /etc/environment
-echo "LANG=\"zh_CN.UTF-8\"" >> /etc/environment
-echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/environment
+# echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/environment
+# echo "LANG=\"zh_CN.UTF-8\"" >> /etc/environment
+# echo "LANGUAGE=\"zh_CN:zh:en_US:en\"" >> /etc/environment
 
-echo "LANGUAGE=\"en_US:en\"" >> $HOME/.bashrc
-echo "LANG=\"en_US.UTF-8\"" >> $HOME/.bashrc
-echo "LC_ALL=\"en_US.UTF-8\"" >> $HOME/.bashrc
+# echo "LANGUAGE=\"en_US:en\"" >> $HOME/.bashrc
+# echo "LANG=\"en_US.UTF-8\"" >> $HOME/.bashrc
+# echo "LC_ALL=\"en_US.UTF-8\"" >> $HOME/.bashrc
+
+echo "LANGUAGE=\"en_US:en\"" >> /etc/environment
+echo "LANG=\"en_US.UTF-8\"" >> /etc/environment
+echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/environment
 
 sed -i 's/# zh_CN.UTF-8/zh_CN.UTF-8/g' /etc/locale.gen
 sed -i 's/# zh_CN GB2312/zh_CN GB2312/g' /etc/locale.gen
-locale-gen en_US.UTF-8 zh_CN.UTF-8
+locale-gen
 
 chmod -R a+rw ${HOME}
 chmod -R 755 $HOME

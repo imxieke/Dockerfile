@@ -31,12 +31,12 @@ function build()
 	cd "$IMG_DIR/$2"
 	if [[ $3 != '' ]]; then
 		if [[ $3 == 'latest' ]]; then
-			docker $1 --no-cache -t ${PREFIX}/$2:latest .
+			time docker $1 --no-cache -t ${PREFIX}/$2:latest .
 		else
-			docker $1 --no-cache -t ${PREFIX}/$2:$3 --file=Dockerfile.$3 .
+			time docker $1 --no-cache -t ${PREFIX}/$2:$3 --file=Dockerfile.$3 .
 		fi
 	else
-		docker $1 --no-cache -t ${PREFIX}/$2:latest .
+		time docker $1 --no-cache -t ${PREFIX}/$2:latest .
 	fi
 }
 
@@ -46,18 +46,18 @@ function push()
 
 	if [[ $3 != '' ]]; then
 		if [[ $3 == 'latest' ]]; then
-			docker push ${PREFIX}/$2:latest
+			time docker push ${PREFIX}/$2:latest
 		else
-			docker push ${PREFIX}/$2:$3
+			time docker push ${PREFIX}/$2:$3
 		fi
 	elif [[ $3 == '' ]]; then
-		docker push ${PREFIX}/$2:latest
+		time docker push ${PREFIX}/$2:latest
 	fi
 }
 
 function pull()
 {
-	docker pull ${PREFIX}/$2
+	time docker pull ${PREFIX}/$2
 }
 
 function usage()

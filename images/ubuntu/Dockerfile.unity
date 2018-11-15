@@ -1,10 +1,12 @@
-FROM reg.qiniu.com/imxieke/ubuntu:xenial-vncenv
+FROM registry.cn-hongkong.aliyuncs.com/imxieke/ubuntu:xenial-vncenv
+
+LABEL MAINTAINER="Cloudflying" \
+        MAIL="oss@live.hk"
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV USER=ubuntu
 ENV HOME=/home/${USER}
 ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" \
-    MAINTAINER=Cloudflying \
-    MAIL=oss@live.hk \
     PASSWD=ubuntu \
     TERM=xterm \
     NO_VNC_HOME=/opt/noVNC \
@@ -20,7 +22,8 @@ COPY ./unity/startup.sh /bin/startup.sh
 COPY ./unity/unity.sh tmp/
 
 RUN chmod +x /tmp/unity.sh \
-    && /tmp/unity.sh
+    && /tmp/unity.sh \
+    && rm -fr /tmp/*
 
 # USER ${USER}
 EXPOSE 6080 ${VNC_PORT} ${NO_VNC_PORT}

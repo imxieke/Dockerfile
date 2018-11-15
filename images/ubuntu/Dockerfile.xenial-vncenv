@@ -5,12 +5,13 @@ FROM registry.cn-hongkong.aliyuncs.com/imxieke/ubuntu:xenial
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
-ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" \
-	DEBIAN_FRONTEND=noninteractive
+ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt update -y --fix-missing \
 	&& apt upgrade -y \
-	&& apt install -y --no-install-recommends sudo apt-utils ubuntu-desktop unity-lens-applications gnome-panel metacity nautilus \
-        xterm supervisor net-tools wget locales curl git zsh vim pwgen libtasn1-3-bin libglu1-mesa \
+	&& apt install -y --no-install-recommends sudo apt-utils ubuntu-desktop \
+		unity-lens-applications gnome-panel metacity nautilus xterm supervisor \
+		net-tools wget locales curl git zsh vim pwgen libtasn1-3-bin libglu1-mesa \
 	&& apt-get purge -y pm-utils xscreensaver* \
 	&& apt autoremove -y \
 	&& apt-get clean all \

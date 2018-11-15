@@ -25,6 +25,7 @@ RUN chmod +x /tmp/unity.sh \
     && /tmp/unity.sh \
     && rm -fr /tmp/*
 
+WORKDIR ${HOME}
 # USER ${USER}
 EXPOSE 6080 ${VNC_PORT} ${NO_VNC_PORT}
 CMD ["/bin/bash", "/bin/startup.sh"]

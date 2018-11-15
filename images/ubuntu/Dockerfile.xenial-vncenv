@@ -12,7 +12,7 @@ RUN apt update -y --fix-missing \
 	&& apt install -y --no-install-recommends sudo apt-utils ubuntu-desktop \
 		unity-lens-applications gnome-panel metacity nautilus xterm supervisor \
 		net-tools wget locales curl git zsh vim pwgen libtasn1-3-bin libglu1-mesa \
-		mate-terminal \
+		mate-terminal fonts-liberation \
 	&& apt-get purge -y pm-utils xscreensaver* \
 	&& apt autoremove -y \
 	&& apt-get clean all \

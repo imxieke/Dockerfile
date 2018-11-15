@@ -13,3 +13,5 @@ User: 		ubuntu
 Pass: 		ubuntu
 VNC Pass: 	ubuntu
 ```
+
+### PS: if want to run Chrome , need add param `--privileged`

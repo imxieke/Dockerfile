@@ -2,9 +2,6 @@
 
 chmod +x /bin/startup.sh
 
-echo "=>Generate locales en_US.UTF-8"
-locale-gen en_US.UTF-8
-
 echo '=>Start Config VNC'
 echo "==>Install TigerVNC server"
 wget -qO- https://qcloud.coding.net/u/imxieke/p/Collect/git/raw/master/src/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C /
@@ -70,9 +67,25 @@ done
 unity > /tmp/unity.log & " > ${HOME}/.xsession
 
 echo '=>Set Locale'
-echo 'LANG='en_US.UTF-8'' >> $HOME/.bashrc
-echo 'LANGUAGE='en_US:en'' >> $HOME/.bashrc
-echo 'LC_ALL='en_US.UTF-8'' >> $HOME/.bashrc
+echo "=>Generate locales en_US.UTF-8"
+
+touch /var/lib/locales/supported.d/local
+echo "en_US.UTF-8 UTF-8" > /var/lib/locales/supported.d/local
+echo "zh_CN.UTF-8 UTF-8" > /var/lib/locales/supported.d/local
+echo "zh_CN.GBK GBK" > /var/lib/locales/supported.d/local
+echo "zh_CN GB2312" > /var/lib/locales/supported.d/local
+
+echo "LANGUAGE=\"zh_CN:zh:en_US:en\"" >> /etc/environment
+echo "LANG=\"zh_CN.UTF-8\"" >> /etc/environment
+echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/environment
+
+echo "LANGUAGE=\"en_US:en\"" >> $HOME/.bashrc
+echo "LANG=\"en_US.UTF-8\"" >> $HOME/.bashrc
+echo "LC_ALL=\"en_US.UTF-8\"" >> $HOME/.bashrc
+
+sed -i 's/# zh_CN.UTF-8/zh_CN.UTF-8/g' /etc/locale.gen
+sed -i 's/# zh_CN GB2312/zh_CN GB2312/g' /etc/locale.gen
+locale-gen en_US.UTF-8 zh_CN.UTF-8
 
 chmod -R a+rw ${HOME}
 chmod -R 755 $HOME

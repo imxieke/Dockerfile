@@ -1,10 +1,8 @@
-FROM daocloud.io/xiekers/alpine:latest
+FROM registry.cn-hongkong.aliyuncs.com/imxieke/alpine:latest
 
-LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk"
+LABEL MAINTAINER="Sky" \
+        MAIL="Sky@gfw.party"
 
-RUN apk update && \
-    apk add --no-cache openjdk8 && \
-    rm -fr /var/cache/apk/*
+RUN apk add --no-cache openjdk8-jre
 
 CMD [ "/bin/sh" ]

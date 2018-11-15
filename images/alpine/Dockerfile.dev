@@ -1,19 +1,9 @@
-FROM imxieke/alpine:edge
+FROM registry.cn-hongkong.aliyuncs.com/imxieke/alpine:latest
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
-RUN apk update && apk upgrade \
-	&& apk --no-cache add openssh openssh-sftp-server neovim git curl wget bash zsh gcc g++ make cmake \
-		automake autoconf luajit-dev libc-dev pcre pcre-dev readline-dev openssl openssl-dev musl musl-dev \
-	&& git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh \
-    && cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc \
-	&& sed -i -e 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
-	&& sed -i -e 's/#PermitUserEnvironment no/PermitUserEnvironment yes/' /etc/ssh/sshd_config \
-	&& mkdir -p /root/.ssh \
-	&& chmod 700 /root/.ssh \
-	&& /usr/bin/ssh-keygen -A \
-	&& echo "source /etc/profile.d/color_prompt" > /root/.bashrc \
-	&& echo "root:alpine" | chpasswd
+RUN apk --no-cache add bash neovim git curl wget zsh \
+	gcc g++ make cmake automake autoconf luajit-dev libc-dev pcre pcre-dev \
+	readline-dev openssl openssl-dev musl musl-dev 
 
-EXPOSE 22
-CMD /usr/sbin/sshd -D -e
+CMD /bin/bash

@@ -9,11 +9,16 @@ ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt update -y --fix-missing \
 	&& apt upgrade -y \
-	&& apt install -y --no-install-recommends sudo apt-utils ubuntu-desktop unity-lens-applications gnome-panel metacity nautilus \
-	xterm supervisor net-tools wget locales curl git zsh vim pwgen libtasn1-3-bin libglu1-mesa mate-terminal \
-	fonts-liberation language-pack-zh-hans fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai \
-	fonts-arphic-uming xfonts-wqy \
-	&& apt-get purge -y pm-utils xscreensaver* \
+	&& apt install -y --no-install-recommends sudo apt-utils ubuntu-desktop \
+	unity-lens-applications gnome-panel metacity nautilus supervisor net-tools \
+	wget locales curl git zsh vim pwgen libtasn1-3-bin libglu1-mesa mate-terminal \
+	fonts-liberation language-pack-zh-hans fonts-droid-fallback ttf-wqy-zenhei \
+	ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming xfonts-wqy libxss1 xdg-utils \
+	&& wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb \
+	&& dpkg -i /tmp/chrome.deb \
+	&& wget https://qcloud.coding.net/u/imxieke/p/Collect/git/raw/master/pkg/sublime_text_3_build_3176_x64.tar.bz2 -O /tmp/sublime.tar.gz \
+	&& tar -xvf /tmp/sublime.tar.gz -C /opt \
+	&& ln -s /opt/sublime_text_3/sublime_text /bin/subl \
 	&& apt autoremove -y \
 	&& apt-get clean all \
 	&& rm -fr /var/lib/apt/lists/*

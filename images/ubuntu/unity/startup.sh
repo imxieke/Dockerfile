@@ -17,3 +17,6 @@ else
 fi
 
 /usr/bin/supervisord -n
+
+# Supervisord sometimes don't working
+unity > /tmp/unity.log &

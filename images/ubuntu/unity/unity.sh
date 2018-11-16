@@ -43,6 +43,8 @@ echo "=>Cloning oh my zsh to $HOME"
 git clone --depth=1 https://git.dev.tencent.com/imxieke/ohmyzsh.git ${HOME}/.oh-my-zsh
 cp ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
 
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="strug"/g' ${HOME}/.zshrc
+
 echo "[program:vncserver]
 command=vncserver -geometry ${VNC_RESOLUTION} ${DISPLAY}
 user=${USER}
@@ -67,32 +69,55 @@ done
 unity > /tmp/unity.log & " > ${HOME}/.xsession
 
 echo '=>Set Locale'
-echo "=>Generate locales en_US.UTF-8"
+echo "=>Generate locales"
 
 touch /var/lib/locales/supported.d/local
 touch /var/lib/locales/supported.d/en
 
 echo "en_US.UTF-8 UTF-8" > /var/lib/locales/supported.d/en
 
-echo "en_US.UTF-8 UTF-8" > /var/lib/locales/supported.d/local
-echo "zh_CN.UTF-8 UTF-8" > /var/lib/locales/supported.d/local
-echo "zh_CN.GBK GBK" > /var/lib/locales/supported.d/local
-echo "zh_CN GB2312" > /var/lib/locales/supported.d/local
+echo "en_US.UTF-8 UTF-8" >> /var/lib/locales/supported.d/local
+echo "zh_CN.UTF-8 UTF-8" >> /var/lib/locales/supported.d/local
 
-# echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/environment
-# echo "LANG=\"zh_CN.UTF-8\"" >> /etc/environment
-# echo "LANGUAGE=\"zh_CN:zh:en_US:en\"" >> /etc/environment
+echo "LANGUAGE=\"zh_CN:zh:en_US:en\"" >> $HOME/.bashrc
+echo "LANG=\"en_US.UTF-8\"" >> $HOME/.bashrc
 
-# echo "LANGUAGE=\"en_US:en\"" >> $HOME/.bashrc
-# echo "LANG=\"en_US.UTF-8\"" >> $HOME/.bashrc
-# echo "LC_ALL=\"en_US.UTF-8\"" >> $HOME/.bashrc
+echo "
+LANG=\"en_US.UTF-8\"
+LANGUAGE=\"zh_CN:zh:en_US:en\"" >> /etc/environment
 
-echo "LANGUAGE=\"en_US:en\"" >> /etc/environment
-echo "LANG=\"en_US.UTF-8\"" >> /etc/environment
-echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/environment
+# echo "
+# LANG=\"en_US.UTF-8\"
+# LANGUAGE=\"zh_CN:zh:en_US:en\"
+# LC_CTYPE=\"en_US.UTF-8\"
+# LC_NUMERIC=\"en_US.UTF-8\"
+# LC_TIME=\"en_US.UTF-8\"
+# LC_COLLATE=\"en_US.UTF-8\"
+# LC_MONETARY=\"en_US.UTF-8\"
+# LC_MESSAGES=\"en_US.UTF-8\"
+# LC_PAPER=\"en_US.UTF-8\"
+# LC_NAME=\"en_US.UTF-8\"
+# LC_ADDRESS=\"en_US.UTF-8\"
+# LC_TELEPHONE=\"en_US.UTF-8\"
+# LC_MEASUREMENT=\"en_US.UTF-8\"
+# LC_IDENTIFICATION=\"en_US.UTF-8\"
+# LC_ALL= " >> ${HOME}/.zshrc
 
 sed -i 's/# zh_CN.UTF-8/zh_CN.UTF-8/g' /etc/locale.gen
-sed -i 's/# zh_CN GB2312/zh_CN GB2312/g' /etc/locale.gen
+
+mkdir -p /etc/default/
+
+if [[ ! -f '/etc/default/locale' ]]; then
+    touch /etc/default/locale
+echo "
+LANG=\"en_US.UTF-8\"
+LANGUAGE=\"zh_CN:zh:en_US:en\"" > /etc/default/locale
+else
+echo "
+LANG=\"en_US.UTF-8\"
+LANGUAGE=\"zh_CN:zh:en_US:en\"" > /etc/default/locale
+fi
+
 locale-gen
 
 chmod -R a+rw ${HOME}
@@ -100,4 +125,3 @@ chmod -R 755 $HOME
 chown -R ${USER}:${USER} ${HOME}
 chown -R ${USER}:${USER} ${HOME}/.*
 chown ${USER}:${USER} ${HOME}/.zshrc
-

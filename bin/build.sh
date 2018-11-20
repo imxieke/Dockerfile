@@ -12,6 +12,10 @@ IMG_DIR="`pwd`/images"
 # Push to Qiniu Cloud Registry
 # PREFIX="reg.qiniu.com/imxieke"
 
+action=$1
+image=$2
+tag=$3
+
 if [[ $(curl -s https://api.ip.sb/geoip | grep Alibaba) != '' ]]; then
 	PREFIX="registry-vpc.cn-hongkong.aliyuncs.com/imxieke"
 elif [[ $(curl -s https://api.ip.sb/geoip | grep CN) != '' ]]; then
@@ -20,6 +24,16 @@ elif [[ $(curl -s https://api.ip.sb/geoip | grep US) != '' ]]; then
 	# Offcial Registry
 	PREFIX="imxieke"
 fi
+
+function usage()
+{
+	echo "	Docker Build Tool
+/-----------------------------------\\
+|	build image name tag         |
+|	push  image name tag         |
+|	pull  image name tag         |
+\\-----------------------------------/"
+}
 
 function build()
 {
@@ -57,17 +71,15 @@ function push()
 
 function pull()
 {
-	time docker pull ${PREFIX}/$2
-}
-
-function usage()
-{
-	echo "	Docker Build Tool
-/-----------------------------------\\
-|	build image name tag         |
-|	push  image name tag         |
-|	pull  image name tag         |
-\\-----------------------------------/"
+	if [[ $image != '' ]]; then
+		if [[ $tag != '' ]]; then
+			docker pull ${PREFIX}/$image:$tag
+		else
+			docker pull ${PREFIX}/$image:latest
+		fi
+	else
+		usage
+	fi
 }
 
 case $1 in

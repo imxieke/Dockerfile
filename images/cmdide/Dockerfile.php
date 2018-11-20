@@ -16,4 +16,4 @@ RUN chmod +x /tmp/build.sh \
 USER ${USER}
 WORKDIR ${HOME}
 EXPOSE 80
-CMD ['/bin/sh']
+CMD ["/bin/sh"]

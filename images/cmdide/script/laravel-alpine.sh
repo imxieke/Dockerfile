@@ -29,6 +29,15 @@ mkdir -p /run/nginx
 mkdir -p /var/log/nginx
 mkdir -p /var/lib/nginx/logs/
 
+# Create Volume Mount Point
+mkdir -p /code
+
+# Create nginx vhost Config directory
+mkdir -p /etc/nginx/vhost.d
+Remove Default Vhost config
+# 
+rm -fr /etc/nginx/conf.d/default.conf
+
 touch /run/nginx/nginx.pid
 touch /var/lib/nginx/logs/access.log
 touch /var/lib/nginx/logs/error.log
@@ -36,7 +45,6 @@ touch /var/lib/nginx/logs/error.log
 chown -R nginx:nginx /run/nginx
 chown -R nginx:nginx /var/log/nginx
 chown -R nginx:nginx /var/lib/nginx
-
 echo "=> Create User ${USER} And Change Password"
 useradd -d /home/${USER} -m -s /bin/sh ${USER}
 echo "${USER}:${PASSWD}" | chpasswd

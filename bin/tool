@@ -39,12 +39,12 @@ run()
 	elif [[ ${image} == 'mariadb' ]]; then
 		if [[ $tag != '' ]]; then
 			docker run -d \
-						--name ${image} \
-						--hostname ${image} \
+						--name=${image} \
+						--hostname=${image} \
 						-v ${MARIADB_VOLUME}:/var/lib/mysql \
 						-e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
-						-p 3306:3306  \
-						${image}:${tag}
+						-p 3306:3306 \
+						${PRIFIX}${image}:${tag}
 		else
 			docker run -d \
 						--name ${image} \
@@ -52,7 +52,7 @@ run()
 						-v ${MARIADB_VOLUME}:/var/lib/mysql \
 						-e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
 						-p 3306:3306  \
-						${image}:latest
+						${PRIFIX}${image}:latest
 		fi
 	elif [[ ${image} == 'mysql' ]]; then
 		if [[ $tag != '' ]]; then
@@ -62,7 +62,7 @@ run()
 						-v ${MYSQL_VOLUME}:/var/lib/mysql \
 						-e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
 						-p 3306:3306  \
-						${image}:${tag}
+						${PRIFIX}${image}:${tag}
 		else
 			docker run -d \
 						--name ${image} \
@@ -70,7 +70,7 @@ run()
 						-v ${MYSQL_VOLUME}:/var/lib/mysql \
 						-e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
 						-p 3306:3306  \
-						${image}:latest
+						${PRIFIX}${image}:latest
 		fi
 	fi
 	# docker run -d --name="ubuntu" --hostname="ubuntu" -p 5901:5901 -p 6901:6901 registry.cn-hongkong.aliyuncs.com/imxieke/ubuntu:unity

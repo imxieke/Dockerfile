@@ -82,6 +82,11 @@ function pull()
 	fi
 }
 
+mariadb_all()
+{
+	echo ""
+}
+
 case $1 in
 	build | -build | --build )
 		build $1 $2 $3 $4 $5 $6

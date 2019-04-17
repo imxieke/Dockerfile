@@ -14,13 +14,15 @@ RUN apt update -y --fix-missing \
 	wget locales curl git zsh vim pwgen libtasn1-3-bin libglu1-mesa mate-terminal \
 	fonts-liberation language-pack-zh-hans fonts-droid-fallback ttf-wqy-zenhei \
 	ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming xfonts-wqy libxss1 xdg-utils \
+	openssl ca-certificates \
 	&& wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb \
 	&& dpkg -i /tmp/chrome.deb \
-	&& wget https://qcloud.coding.net/u/imxieke/p/Collect/git/raw/master/pkg/sublime_text_3_build_3176_x64.tar.bz2 -O /tmp/sublime.tar.gz \
+	&& wget -qO- --no-check-certificate https://dev.tencent.com/u/imxieke/p/attachment/git/raw/master/pkgs/sublime_text_3_build_3176_x64.tar.bz2 -O /tmp/sublime.tar.gz \
 	&& tar -xvf /tmp/sublime.tar.gz -C /opt \
 	&& ln -s /opt/sublime_text_3/sublime_text /bin/subl \
 	&& apt autoremove -y \
 	&& apt-get clean all \
-	&& rm -fr /var/lib/apt/lists/*
+	&& rm -fr /var/lib/apt/lists/* \
+	&& rm -fr /tmp/*
 
 CMD ['/bin/bash']

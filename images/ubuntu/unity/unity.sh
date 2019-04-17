@@ -4,12 +4,12 @@ chmod +x /bin/startup.sh
 
 echo '=>Start Config VNC'
 echo "==>Install TigerVNC server"
-wget -qO- https://qcloud.coding.net/u/imxieke/p/Collect/git/raw/master/src/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C /
+wget -qO- --no-check-certificate https://dev.tencent.com/u/imxieke/p/attachment/git/raw/master/src/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C /
 echo "==>Install noVNC - HTML5 based VNC viewer"
 mkdir -p $NO_VNC_HOME/utils/websockify
-wget -qO- https://qcloud.coding.net/u/imxieke/p/Collect/git/raw/master/src/no-vnc_v1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME
+wget -qO- --no-check-certificate https://dev.tencent.com/u/imxieke/p/attachment/git/raw/master/src/no-vnc_v1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME
 # use older version of websockify to prevent hanging connections on offline containers, see https://github.com/ConSol/docker-headless-vnc-container/issues/50
-wget -qO- https://qcloud.coding.net/u/imxieke/p/Collect/git/raw/master/src/websockify_v0.6.1.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify
+wget -qO- --no-check-certificate https://dev.tencent.com/u/imxieke/p/attachment/git/raw/master/src/websockify_v0.6.1.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify
 chmod +x -v $NO_VNC_HOME/utils/*.sh
 ## create index.html to forward automatically to `vnc_lite.html`
 ln -s $NO_VNC_HOME/vnc.html $NO_VNC_HOME/index.html

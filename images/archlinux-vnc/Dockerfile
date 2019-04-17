@@ -1,9 +1,8 @@
-FROM imxieke/archlinux:latest
+FROM registry.cn-hongkong.aliyuncs.com/imxieke/archlinux:vncenv
 LABEL MAINTAINER="Cloudflying" \
         MAIL="<oss@live.hk>"
-
+ENV HOME=/root
 ENV AUTHORIZED_KEYS **None** \
-    HOME=/root \
     DISPLAY=:1 \
     TERM=xterm \
     VNC_PORT=5901 \
@@ -18,16 +17,7 @@ WORKDIR /root
 
 ADD run.sh /
 
-RUN pacman --noconfirm --force -Syyu && \
-	pacman -S --noconfirm  --force openssh sudo supervisor xorg xfce4 x11vnc xterm xorg-twm xorg-xclock tigervnc expect ratpoison ttf-droid ttf-dejavu && \
-	rm -fr /var/cache/pacman/pkg/* && \
-	pacman -Scc --noconfirm && \
-	rm -fr /var/lib/pacman/* && \
-    mkdir -p /var/run/sshd && mkdir -p /root/.vnc && \
-	sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && \
-    sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config && \
-    sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config && \
-    ssh-keygen -A && chmod +x /*.sh
+RUN chmod +x /*.sh
 
 ADD conf/.xinitrc /root/.xinitrc
 ADD conf/.ratpoisonrc /root/.ratpoisonrc

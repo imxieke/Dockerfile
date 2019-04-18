@@ -2,17 +2,25 @@
 # Description: Build php extensions.
 # time : 27 Dec 2017
 
-SWOOLE_VER="2.0.10"
+SWOOLE_VER="4.3.2"
 RAR_VER="4.0.0"
 REDIS_VER="3.1.5"
-IONCUBE_VER="10.1.0"
+IONCUBE_VER="10.3.4"
 IMAGICK_VER="3.4.3"
 cur_dir="/tmp"
-build(){
+
+# PHP_VER=$(apk info php | grep descr | awk -F '-' '{print $2}')
+
+PHP_FULLVER=$(php -v | head -n 1 | awk -F ' ' '{print $2}')
+PHP_VER=${PHP_FULLVER:0:3}
+
+build()
+{
 	phpize && ./configure && make -j8 && make install
 }
 
-imagick(){
+imagick()
+{
 	name="imagick"
 	cd ${cur_dir}
 	wget https://pecl.php.net/get/${name}-${IMAGICK_VER}.tgz && tar -xvf ${name}-${IMAGICK_VER}.tgz
@@ -20,10 +28,11 @@ imagick(){
 	echo "extension=${name}.so" > /etc/php7/conf.d/${name}.ini
 }
 
-swoole(){
+swoole()
+{
 	name="swoole"
 	cd ${cur_dir}
-	wget https://pecl.php.net/get/${name}-${SWOOLE_VER}.tgz && tar -xvf ${name}-${SWOOLE_VER}.tgz
+	wget https://dev.tencent.com/u/imxieke/p/attachment/git/raw/master/src/${name}-${SWOOLE_VER}.tgz && tar -xvf ${name}-${SWOOLE_VER}.tgz
 	cd ${name}-${SWOOLE_VER}
 	# have unknow error
 	#if [ `cat /etc/os-release  | grep Alpine\ Linux` ]; then
@@ -42,7 +51,8 @@ rar(){
 	echo "extension=${name}.so" > /etc/php7/conf.d/${name}.ini
 }
 
-redis(){
+redis()
+{
 	name="redis"
 	cd ${cur_dir}
 	wget https://pecl.php.net/get/${name}-${REDIS_VER}.tgz && tar -xvf ${name}-${REDIS_VER}.tgz
@@ -50,16 +60,18 @@ redis(){
 	echo "extension=${name}.so" > /etc/php7/conf.d/${name}.ini
 }
 
-ioncube(){
+ioncube()
+{
 	name="ioncube"
 	cd ${cur_dir}
-	wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.zip -O ${name}-${IONCUBE_VER}.zip && unzip ${name}-${IONCUBE_VER}
-	mv ${name}/ioncube_loader_lin_7.1.so /usr/lib/php7/modules/${name}.so
+	wget https://dev.tencent.com/u/imxieke/p/attachment/git/raw/master/src/ioncube_loaders_lin_x86-64.zip -O ${name}.zip && unzip ${name}.zip
+	mv ${name}/ioncube_loader_lin_${PHP_VER}.so /usr/lib/php7/modules/${name}.so
 	# echo "extension=${name}.so" > /etc/php7/conf.d/${name}.ini
 }
 
-start(){
-	imagick
+start()
+{
+	# imagick
 	swoole
 	rar
 	# redis

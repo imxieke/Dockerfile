@@ -1,5 +1,5 @@
 shadowsocks:
-  image: shadowsocks/shadowsocks-libev
+  image: registry.cn-hongkong.aliyuncs.com/imxieke/shadowsocks
   ports:
     - "8388:8388/tcp"
     - "8388:8388/udp"

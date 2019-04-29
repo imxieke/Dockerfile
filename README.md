@@ -13,6 +13,13 @@ sshd            ---> support remote access via ssh ,running in debian buster
 ttyd            ---> Share your terminal over the web
 ```
 
+### Run 
+
+```
+$ run shadowsocks
+docker run -d -p 6443:6443 -e PASSWORD=passwd registry.cn-hongkong.aliyuncs.com/imxieke/shadowsocks 
+```
+
 ### Linux 
 
 	alpine      A minimal Linux

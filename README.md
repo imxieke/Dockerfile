@@ -20,6 +20,10 @@ $ run shadowsocks
 docker run -d -p 6443:6443 -e PASSWORD=passwd registry.cn-hongkong.aliyuncs.com/imxieke/shadowsocks 
 ```
 
+```
+docker run -d -p 3308:3306 -e MYSQL_ROOT_PASSWORD=19960318 registry.cn-hongkong.aliyuncs.com/imxieke/mysql:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+```
+
 ### Linux 
 
 	alpine      A minimal Linux

@@ -11,10 +11,10 @@ datadir		= /var/lib/mysql
 
 # Log
 
-general_log              = 1
-general_log_file         = /var/log/mysql/mysql_general.log
-max_binlog_size          = 1G
-max_relay_log_size       = 2G
+# general_log              = 1
+# general_log_file         = /var/log/mysql/mysql_general.log
+# max_binlog_size          = 1G
+# max_relay_log_size       = 2G
 
 log-error	= /var/log/mysql/error.log
 
@@ -32,6 +32,7 @@ skip-name-resolve
 #skip-networking
 
 performance_schema_max_table_instances=400
+
 table_definition_cache=400
 key_buffer_size = 128M
 
@@ -49,14 +50,14 @@ myisam_sort_buffer_size = 32M
 
 thread_stack       = 192K # each Thread Stack Size
 thread_cache_size  = 64
-thread_concurrency = 8
+# thread_concurrency = 8
 
 query_cache_size 		 = 64M
 query_cache_limit        = 2M # Don't cache value when result more than result
 query_cache_min_res_unit = 2K # Minimum block size for query cache allocation
 
 tmp_table_size = 256M
-table_cache    = 512 
+# table_cache    = 512 
 
 sql-mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 explicit_defaults_for_timestamp = true
@@ -64,7 +65,7 @@ open_files_limit = 65535
 
 # default settings
 # time zone
-system_time_zone       = system 	# Server TimeZone
+# system_time_zone       = system 	# Server TimeZone
 character_set_server   = utf8mb4 	# server Level Character
 default_storage_engine = InnoDB 	# Default Storage Engine
 
@@ -113,6 +114,8 @@ innodb_log_file_size 		= 256M
 innodb_log_buffer_size 		= 64M
 innodb_lock_wait_timeout 	= 120
 innodb_max_dirty_pages_pct 	= 90
+innodb_purge_threads 		= 4
+innodb_thread_concurrency 	= 0 # No Limit
 innodb_read_io_threads 		= 4
 innodb_write_io_threads 	= 4
 innodb_flush_log_at_trx_commit = 1
